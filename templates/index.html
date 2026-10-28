@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Resolver Visualizer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>DNS Resolver Visualizer</h1>
+        <p>Interactive Simulation of Domain Name Resolution with Caching</p>
+    </div>
+
+    <div class="search-panel">
+        <input id="domainInput" type="text"
+               placeholder="Enter domain (example: google.com)">
+        <button id="resolveBtn">Resolve</button>
+    </div>
+
+    <div class="network-area">
+        <div class="packet" id="packet"></div>
+
+        <div class="node" id="user">💻<span>User</span></div>
+        <div class="line"></div>
+
+        <div class="node" id="local">🖥️<span>Local DNS</span></div>
+        <div class="line"></div>
+
+        <div class="node" id="root">🌐<span>Root</span></div>
+        <div class="line"></div>
+
+        <div class="node" id="tld">📂<span>.com</span></div>
+        <div class="line"></div>
+
+        <div class="node" id="auth">🏢<span>Authoritative</span></div>
+
+    </div>
+
+
+    <div class="info-section">
+
+        <div class="card">
+            <h3>Lookup Result</h3>
+
+            <p><strong>Domain:</strong>
+            <span id="domainResult">-</span></p>
+
+            <p><strong>IP:</strong>
+            <span id="ipResult">-</span></p>
+
+            <p><strong>Status:</strong>
+            <span id="statusResult">Waiting</span></p>
+        </div>
+
+        <div class="card">
+            <h3>Lookup Time</h3>
+            <div id="timer">0.00 s</div>
+        </div>
+
+        <div class="card log-card">
+            <h3>DNS Resolution Log</h3>
+            <div id="logContainer">
+                <p>Waiting for query...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="dashboard">
+
+    <div class="dash-card">
+        <h4>Total Queries</h4>
+        <span id="totalQueries">0</span>
+    </div>
+
+    <div class="dash-card">
+        <h4>Cache Hits</h4>
+        <span id="cacheHits">0</span>
+    </div>
+
+    <div class="dash-card">
+        <h4>Cache Misses</h4>
+        <span id="cacheMisses">0</span>
+    </div>
+
+    <div class="dash-card">
+        <h4>Average Lookup</h4>
+        <span id="avgLookup">0.00 s</span>
+    </div>
+
+</div>
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
